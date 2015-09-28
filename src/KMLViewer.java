@@ -349,7 +349,7 @@ public class KMLViewer extends ApplicationTemplate {
 
 		private JCheckBox append = new JCheckBox("Use Sequential");
 
-		private static final int SPINNER_MAX = 99999;
+		private static final int SPINNER_MAX = Integer.MAX_VALUE;
 
 		public LinePanel(WorldWindow wwd, final Globe lineBuilder) {
 			super(new BorderLayout());
@@ -422,7 +422,6 @@ public class KMLViewer extends ApplicationTemplate {
 			newButton = new JButton("Start");
 			newButton.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent actionEvent) {
-					// lineBuilder.clear();
 					lineBuilder.setArmed(true);
 					pauseButton.setText("Pause");
 					pauseButton.setEnabled(true);
@@ -444,7 +443,6 @@ public class KMLViewer extends ApplicationTemplate {
 					((Component) wwd).setCursor(Cursor.getDefaultCursor());
 				}
 			});
-			// buttonPanel.add(pauseButton);
 			pauseButton.setEnabled(false);
 
 			exportKMLButton = new JButton("Export KML");
@@ -452,16 +450,6 @@ public class KMLViewer extends ApplicationTemplate {
 
 				@Override
 				public void actionPerformed(ActionEvent e) {
-
-					/*
-					 * JFileChooser fileChooser = new JFileChooser();
-					 * fileChooser.setSelectedFile(new File("placemarks.kml"));
-					 * if (fileChooser.showSaveDialog(LinePanel.this) ==
-					 * JFileChooser.APPROVE_OPTION) {
-					 * 
-					 * 
-					 * }
-					 */
 
 					CustomFileChooser cfc = new CustomFileChooser("kml");
 					if (cfc.showSaveDialog(LinePanel.this) == CustomFileChooser.APPROVE_OPTION) {
@@ -644,13 +632,12 @@ public class KMLViewer extends ApplicationTemplate {
 
 						@Override
 						public void changedUpdate(DocumentEvent e) {
-							// TODO Auto-generated method stub
 
 						}
 					});
 
-			// lowerPanel.add(label2);
 
+			// This is the transparency slider and its options
 			transp.setPaintTicks(true);
 			transp.setMajorTickSpacing(50);
 			transp.setPaintLabels(true);
@@ -658,8 +645,6 @@ public class KMLViewer extends ApplicationTemplate {
 
 				@Override
 				public void stateChanged(ChangeEvent e) {
-					// RenderableLayer r = (RenderableLayer)
-					// wwd.getModel().getLayers().get(wwd.getModel().getLayers().size());
 					JSlider source = (JSlider) e.getSource();
 					if (!source.getValueIsAdjusting()) {
 
@@ -905,7 +890,7 @@ public class KMLViewer extends ApplicationTemplate {
 				JOptionPane
 						.showMessageDialog(
 								appFrame,
-								"Placemark Digitizer v1.1\nDeveloped by Jack Jamieson 2015\nhttp://www.jackjamieson.me");
+								"Placemark Digitizer v1.2\nDeveloped by Jack Jamieson 2015\nhttp://www.jackjamieson.me");
 
 			}
 		});
